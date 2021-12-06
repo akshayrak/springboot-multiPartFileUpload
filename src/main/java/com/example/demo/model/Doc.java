@@ -16,29 +16,19 @@ public class Doc {
 	private String docName;
 	private String docType;
 	private String channel;
-	private String customer;
 	
 	@Lob
 	private byte[] data;
 	
 	public Doc() {}
 
-	public Doc(String custormer, String channel,Integer id, String docName, String docType, byte[] data) {
+	public Doc(String channel,Integer id, String docName, String docType, byte[] data) {
 		super();
-		this.customer=custormer;
 		this.channel=channel;
 		this.id=id;
 		this.docName = docName;
 		this.docType = docType;
 		this.data = data;
-	}
-
-	public String getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(String customer) {
-		this.customer = customer;
 	}
 
 	public String getChannel() {

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -27,11 +28,16 @@ public class DocController {
 	private DocStorageService docStorageService;
 	
 	@PostMapping("/uploadFiles")
-	public String uploadMultipleFiles(@RequestParam("requestId") Integer requestId, @RequestParam("channel") String channel,@RequestParam("customer") String customer ,@RequestParam("files") MultipartFile[] files) {
+	public String uploadMultipleFiles(@RequestParam("requestId") Integer requestId, @RequestParam("channel") String channel,@RequestParam("name") String name,@RequestParam Integer age ,@RequestParam("files") MultipartFile[] files) {
+		
+		try {
 		for (MultipartFile file: files) {
-			docStorageService.saveFile(file,requestId,channel,customer);
+			docStorageService.saveFile(file,requestId,channel,name,age);
 		}
 		return "success";
+		}catch(Exception e) {
+			return e.toString();
+		}
 	}
 	
 }
