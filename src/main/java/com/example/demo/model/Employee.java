@@ -1,4 +1,6 @@
-package com.example.demo.beans;
+package com.example.demo.model;
+import java.io.IOException;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -22,13 +24,7 @@ public class Employee {
     {
 
     }
-    // public Employee(int id, String channel, String name, int age ) {
-    //     this.id = id;
-    //     this.channel = channel;
-    //     this.name = name;
-    //     this.age = age;
-       
-    // }
+   
     public Employee(int id, String channel, String name, int age) {
         this.id = id;
         this.channel = channel;
@@ -66,6 +62,15 @@ public class Employee {
 
     public void setFiles(byte[] files) {
         this.files = files;
+    }
+
+    public void setFiles(MultipartFile files){
+        try {
+            this.files=files.getBytes();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
 }

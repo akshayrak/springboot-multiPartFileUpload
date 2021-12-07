@@ -4,7 +4,7 @@ import com.example.demo.repository.EmployeeRepository;
 
 import java.util.List;
 
-import com.example.demo.beans.Employee;
+import com.example.demo.model.Employee;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,28 +22,11 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee createEmployee(Employee employee,MultipartFile file) {
-        Employee e = new Employee();
-        try{
-        // e=new Employee(employee.getId(),employee.getChannel(),employee.getName(),employee.getAge(),e.getFiles());
-        }
-        catch(Exception ex)
-        {
-            System.out.println("Error");
-        }
-        return employeeRepository.save(e);
+    public Employee createEmployee(Employee employee) {
+        
+        return employeeRepository.save(employee);
     }
 
-    public Employee saveFile(Employee e,MultipartFile file) {
-        try {
-            System.out.println("Here");
-           // e.setFiles(file.getBytes());
-        }
-        catch(Exception ex) {
-           // ex.printStackTrace();
-        }
-        
-        return employeeRepository.save(e);
-    }
+    
 
 }

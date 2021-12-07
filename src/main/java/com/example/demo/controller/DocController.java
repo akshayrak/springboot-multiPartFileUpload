@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.beans.Employee;
+import com.example.demo.model.Employee;
 import com.example.demo.model.Doc;
 import com.example.demo.service.DocStorageService;
 import com.example.demo.service.EmployeeService;
@@ -59,13 +59,14 @@ public class DocController {
 	}
 
 
-	@PostMapping(value="/uploadEmployeeDetails")
-	public String uploadEmployeeDetails(@ModelAttribute Employee employee,@RequestParam("files") MultipartFile files)
+	
+
+	@RequestMapping(path = "/uploadEmployeeDetailsNew", method = RequestMethod.POST, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+	public String uploadEmployeeDetailsNew(@ModelAttribute Employee employee, @RequestParam MultipartFile document)
 	{
 		System.out.println(employee.getName());
-		emplService.saveFile(employee,files);
-		
-		//emplService.createEmployee(employee,files);
+		employee.setFiles(document);
+		emplService.createEmployee(employee);
 
 
 		return "Success";
